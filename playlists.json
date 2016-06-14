@@ -1,0 +1,289 @@
+{
+  "href" : "https://api.spotify.com/v1/users/oilgorim/playlists?offset=0&limit=50",
+  "items" : [ {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/7LOlZ9L1ZDuOe8QU8BfsMR"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/7LOlZ9L1ZDuOe8QU8BfsMR",
+    "id" : "7LOlZ9L1ZDuOe8QU8BfsMR",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/f4eb11b1ca240fa9d4bf1aaac8752c32af6b656ec48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774c7ef9fd6d84c4437577cf50a231f3af0b638fd12",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/f4eb11b1ca240fa9d4bf1aaac8752c32af6b656ec48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774c7ef9fd6d84c4437577cf50a231f3af0b638fd12",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/f4eb11b1ca240fa9d4bf1aaac8752c32af6b656ec48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774c7ef9fd6d84c4437577cf50a231f3af0b638fd12",
+      "width" : 60
+    } ],
+    "name" : "B",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "v0n3lXuv2xzUThqdjLttW/FYjU2LGz85gvvrZR6Qa4D3ZyqzyPryRkLhnkXcOK2W",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/7LOlZ9L1ZDuOe8QU8BfsMR/tracks",
+      "total" : 13
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:7LOlZ9L1ZDuOe8QU8BfsMR"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/3TvquIZzfOODHPW54bgmgl"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/3TvquIZzfOODHPW54bgmgl",
+    "id" : "3TvquIZzfOODHPW54bgmgl",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/dbbec299844faf0b4d905a84cda75d7afd20c8914c23a82f33b034795a0fbc67af559420c8cb49284c7a0b089f59e0b635a84ddc431ca8d1ed12834526b5846e6bee3c43ced2bf5ad6e010642b1b2015",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/dbbec299844faf0b4d905a84cda75d7afd20c8914c23a82f33b034795a0fbc67af559420c8cb49284c7a0b089f59e0b635a84ddc431ca8d1ed12834526b5846e6bee3c43ced2bf5ad6e010642b1b2015",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/dbbec299844faf0b4d905a84cda75d7afd20c8914c23a82f33b034795a0fbc67af559420c8cb49284c7a0b089f59e0b635a84ddc431ca8d1ed12834526b5846e6bee3c43ced2bf5ad6e010642b1b2015",
+      "width" : 60
+    } ],
+    "name" : "Norah Jones – Come Away With Me",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "oMoJYrV11oQDcFie/Fnmj35qxs6JJJL0NnZQYY9eCqWI6P3O5jeLUiuQqGtTmCyp",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/3TvquIZzfOODHPW54bgmgl/tracks",
+      "total" : 21
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:3TvquIZzfOODHPW54bgmgl"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/6savFy6fcdhZ4t8XRUCQrl"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/6savFy6fcdhZ4t8XRUCQrl",
+    "id" : "6savFy6fcdhZ4t8XRUCQrl",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/ffaca1bebba7665272c558351e1eea00d18fa303a15686d720b073d0929e467e74381538c3c483a6c48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/ffaca1bebba7665272c558351e1eea00d18fa303a15686d720b073d0929e467e74381538c3c483a6c48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/ffaca1bebba7665272c558351e1eea00d18fa303a15686d720b073d0929e467e74381538c3c483a6c48d2cf2d22f6ac09ffe1e90e1675d6521d18a42660d58cc879e0f90852b7243405597634a6a2774",
+      "width" : 60
+    } ],
+    "name" : "clear",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "pO1+5ibKEB7wT7uLfavGnw5ZvlfUdBrZitSzoa/5ak7GGs3WK+Lc7PRwcELoeTBA",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/6savFy6fcdhZ4t8XRUCQrl/tracks",
+      "total" : 11
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:6savFy6fcdhZ4t8XRUCQrl"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/11irsQVuHwLIGUTTpQOHkd"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/11irsQVuHwLIGUTTpQOHkd",
+    "id" : "11irsQVuHwLIGUTTpQOHkd",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/d78cde48defb975f25a40d0f65eac079f62840c2976c0148a31149e06b000efa322e824bcf37b1b823c41fec5f77e92780079ecb2692cff3a221ac837f4a1de33d1b36e23dd3961794c275d818a75dc7",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/d78cde48defb975f25a40d0f65eac079f62840c2976c0148a31149e06b000efa322e824bcf37b1b823c41fec5f77e92780079ecb2692cff3a221ac837f4a1de33d1b36e23dd3961794c275d818a75dc7",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/d78cde48defb975f25a40d0f65eac079f62840c2976c0148a31149e06b000efa322e824bcf37b1b823c41fec5f77e92780079ecb2692cff3a221ac837f4a1de33d1b36e23dd3961794c275d818a75dc7",
+      "width" : 60
+    } ],
+    "name" : "b",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "oZvm1JPOGaq1IGdaVVt5R2aGHprTsU1p+HyUv3rc7XozhJDcl+afzsyQ9vs2Wg/u",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/11irsQVuHwLIGUTTpQOHkd/tracks",
+      "total" : 28
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:11irsQVuHwLIGUTTpQOHkd"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/7wQ4mK73zA19ZxUobxhmto"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/7wQ4mK73zA19ZxUobxhmto",
+    "id" : "7wQ4mK73zA19ZxUobxhmto",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://i.scdn.co/image/7f4a1de33d1b36e23dd3961794c275d818a75dc7",
+      "width" : 640
+    } ],
+    "name" : "How to Impress the Goddess Pt2",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "JEAoovOhOgP6l9jAl8HT6EodCFon8HlcCxUPr7A0PCRdyf3iqwXQ2ynbK18+Ec8F",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/7wQ4mK73zA19ZxUobxhmto/tracks",
+      "total" : 1
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:7wQ4mK73zA19ZxUobxhmto"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/4mbhIOf0q1GH0IFw0gcnh9"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/4mbhIOf0q1GH0IFw0gcnh9",
+    "id" : "4mbhIOf0q1GH0IFw0gcnh9",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://i.scdn.co/image/23c41fec5f77e92780079ecb2692cff3a221ac83",
+      "width" : 640
+    } ],
+    "name" : "Little Fury Things",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "qY37g0bKSJKbjMw+kdTUMJ6lKcduJUnSvbYE3r4tEPVrBSeL8wHHzTr8pk/td570",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/4mbhIOf0q1GH0IFw0gcnh9/tracks",
+      "total" : 1
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:4mbhIOf0q1GH0IFw0gcnh9"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/oilgorim/playlist/4O8u5KNYpLlYRSdcWQOdUv"
+    },
+    "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/4O8u5KNYpLlYRSdcWQOdUv",
+    "id" : "4O8u5KNYpLlYRSdcWQOdUv",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://i.scdn.co/image/976c0148a31149e06b000efa322e824bcf37b1b8",
+      "width" : 640
+    } ],
+    "name" : "Good Neck",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/oilgorim"
+      },
+      "href" : "https://api.spotify.com/v1/users/oilgorim",
+      "id" : "oilgorim",
+      "type" : "user",
+      "uri" : "spotify:user:oilgorim"
+    },
+    "public" : true,
+    "snapshot_id" : "XnQwhUVPjRD1I5Lx08wV4KDMXCvAGo70ofSgNAOShHkK5d6nMePyRDgdXUO1rgIv",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/oilgorim/playlists/4O8u5KNYpLlYRSdcWQOdUv/tracks",
+      "total" : 1
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:oilgorim:playlist:4O8u5KNYpLlYRSdcWQOdUv"
+  }, {
+    "collaborative" : false,
+    "external_urls" : {
+      "spotify" : "http://open.spotify.com/user/16fcali/playlist/7lD1brijXLwvGXkX6fLxtB"
+    },
+    "href" : "https://api.spotify.com/v1/users/16fcali/playlists/7lD1brijXLwvGXkX6fLxtB",
+    "id" : "7lD1brijXLwvGXkX6fLxtB",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/e962210e0471b437b5975db38e59a735f309423a1af61a0c9976e7a8fc5a9fd0ef94ba1501fe32615a02075451f5f9172c38c0fdf928188053fc54959026b681b2168038aed00895d0a0710790c743b0",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/e962210e0471b437b5975db38e59a735f309423a1af61a0c9976e7a8fc5a9fd0ef94ba1501fe32615a02075451f5f9172c38c0fdf928188053fc54959026b681b2168038aed00895d0a0710790c743b0",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/e962210e0471b437b5975db38e59a735f309423a1af61a0c9976e7a8fc5a9fd0ef94ba1501fe32615a02075451f5f9172c38c0fdf928188053fc54959026b681b2168038aed00895d0a0710790c743b0",
+      "width" : 60
+    } ],
+    "name" : "sp15-61b",
+    "owner" : {
+      "external_urls" : {
+        "spotify" : "http://open.spotify.com/user/16fcali"
+      },
+      "href" : "https://api.spotify.com/v1/users/16fcali",
+      "id" : "16fcali",
+      "type" : "user",
+      "uri" : "spotify:user:16fcali"
+    },
+    "public" : true,
+    "snapshot_id" : "jKkHh23X59Pmfhlt/Y//CpNu0hqASBH2PbW4eXnZzxP5Xci9DxBqzOGVIiw64Zzj",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/users/16fcali/playlists/7lD1brijXLwvGXkX6fLxtB/tracks",
+      "total" : 26
+    },
+    "type" : "playlist",
+    "uri" : "spotify:user:16fcali:playlist:7lD1brijXLwvGXkX6fLxtB"
+  } ],
+  "limit" : 50,
+  "next" : null,
+  "offset" : 0,
+  "previous" : null,
+  "total" : 8
+}

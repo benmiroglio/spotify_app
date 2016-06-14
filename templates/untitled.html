@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<head>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="https://use.fontawesome.com/cc6ed501ab.js"></script>
+<script type="text/javascript"
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<style>
+
+body {
+	padding: 3em 0 0 0 ;
+}
+h1 {
+	font-family: Helvetica;
+	font-weight: 100;
+	text-align: center
+}
+.button {
+	text-align: center;
+}
+
+#DLbutton {
+	color: black;
+}
+
+ #DLbutton:hover {
+		color:#2EBD59;
+	}
+</style>
+<script type="text/javascript">
+  $(function() {
+    var display_loading = function(e) {
+      $.getJSON($SCRIPT_ROOT + '/loading', {}, function(data) {
+        $('#result').html(data.result);
+      });
+      return false;
+    };
+
+    var load_profile = function(e) {
+      $.getJSON($SCRIPT_ROOT + '/get_user_data', {}, function(data) {
+        $('#result').html(data.result);
+      });
+      return false;
+    };
+    
+    var hide_button = function(e) {
+      $('#DLbutton').hide()
+    }
+
+    var hide_prompt = function(e) {
+      $('.proftext').hide()
+    }
+
+
+  
+    $('#DLbutton').bind('click', hide_button);
+    $('#DLbutton').bind('click', display_loading);
+    $('#DLbutton').bind('click', load_profile);
+    $('#DLbutton').bind('click', hide_prompt);
+
+    $('input').bind('keydown', function(e) {
+      if (e.keyCode == 13) {
+        hide_button(e)
+        display_loading(e);
+        load_profile(e)
+        hide_prompt(e)
+
+      }
+    });
+  });
+</script>
+</head>
+<body>
+<div class=proftext>
+<h1>Get Taste Profile!</h1>
+</div>
+<div class='button'>
+<p><span id="result"></span><p><a href=#>
+<i class="fa fa-arrow-circle-down fa-5x" id='DLbutton'></i>
+</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="//d3js.org/d3.v3.min.js"></script>
+
+<style>
+
+body {
+  font: 10px Helvetica;
+  margin: auto;
+}
+
+
+#proftext {
+  font: 0px;
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.x.axis path {
+  display: none;
+  font-weight: 100;
+}
+
+.line {
+  fill: none;
+  stroke-width: 3px;
+  stroke-opacity: .5;
+}
+
+.lineHover {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 6px;
+}
+
+
+/*#energy {
+  stroke-width: 5px;
+}*/
+
+</style>
+<body>
+<h1></h1>
+<p></p>
+<script>
+
+var margin = {top: 140, right: 80, bottom: 30, left: 80},
+    width = 1000- margin.left - margin.right,
+    height = 580 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("%Y-%m").parse;
+
+var x = d3.time.scale()
+    .range([20, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickFormat(function(d, i){
+        return [d.getMonth(), d.getFullYear()].join('-')
+        
+      });
+
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right + 600)
+    .attr("height", height + margin.top + margin.bottom + 320)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+var score_descriptions = {
+  'danceability'    : "Danceability describes how suitable a track is "  + 
+                      "for dancing based on a combination of musical "   + 
+                      "elements",
+
+  'energy'          :  "Energy represents "+
+                       "a perceptual measure of intensity and activity. "   + 
+                       "Typically, energetic tracks feel fast, loud, and "  +
+                       "noisy.",
+
+  'acousticness'    : "A confidence measure of whether the " + 
+                      "track is acoustic.",
+
+  'instrumentalness': 'Predicts whether a track contains no vocals.' + 
+                      '"Ooh" and "aah" sounds are treated as instrumental '+ 
+                      'in this context.',
+
+  'liveness'        :  "Detects the presence of an audience in the recording. " +
+                       "Higher liveness values represent an increased probability "+
+                       "that the track was performed live.",
+
+  'loudness'        :  'The overall loudness of a track in decibels (dB) (normalized). '+
+                       'Loudness values are averaged across the entire track',
+
+  'mode'            :  "Mode indicates the modality (major or minor) of a track",
+
+  'tempo'           :  "The overall estimated tempo of a track in beats per minute (BPM) (normalized)",
+
+  'speechiness'     :  "Speechiness detects the presence of spoken words in a track",
+
+  'valence'         :  "A measure describing the "+
+                       "musical positiveness conveyed by a track. "+
+                       "Tracks with high valence sound more positive"
+}
+
+user=''
+
+d3.text('username.txt', function(error, data) {
+  if (error) throw error;
+  d3.select('h1').append('text').text('Spotify User: ' + data)
+    .style('font-size', 30).style('font-weight', 100)
+    user = data;
+})
+
+global_cols = []
+
+d3.csv("user_hist.csv", function(error, data) {
+  if (error) throw error;
+
+  for (key in data[0]) {
+    if (key != 'date') {
+    global_cols.push(key)
+  }
+}
+
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+  data.forEach(function(d) {
+    d.date = parseDate(d.date);
+  });
+
+  var interp = 'cardinal';
+
+  var line = d3.svg.line()
+    .interpolate(interp)
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.score); });
+
+  var lineHover = d3.svg.line()
+      .interpolate(interp)
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.score); });
+
+  var scores = color.domain().map(function(name) {
+    return {
+      name: name,
+      selected: true,
+      values: data.map(function(d) {
+        return {date: d.date, score: +d[name]};
+      })
+    };
+  });
+
+
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+
+  y.domain([
+    d3.min(scores, function(c) { return d3.min(c.values, function(v) { return v.score; }); }) - .02,
+    d3.max(scores, function(c) { return d3.max(c.values, function(v) { return v.score; }); })
+  ]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," +height + ")")
+      .call(xAxis).style('font-weight', 100)
+      .style('font-size', '12px')
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90, -70, 0) translate(-190)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Averge Normalized Score").style('font-weight', 100)
+      .style('font-size', '12px');
+
+  var score = svg.selectAll(".score")
+      .data(scores.filter(function(d){return d.selected=true}))
+      .enter().append("g")
+      .attr("class", "score");
+
+ 
+  // svg.append()
+    // add line with colors, smaller default stroke-width
+    score.append("path")
+        .attr("class", "line")
+        .attr("id", function(d) {return d.name})
+        .attr("d", function(d) { return line(d.values);})
+        .style("stroke", function(d) { return color(d.name);});
+      
+
+    var highlight_line = function(d) {
+        if (d.selected == true) {
+        d3.selectAll('#' + d.name)
+          .style('stroke-width', '8px')
+          .style('stroke-opacity', '1');
+        d3.selectAll('#rect' + d.name)
+          .style('x', 1150)
+          .transition()
+          .style('fill-opacity', 1)
+        d3.selectAll('#' + 'side_text' + d.name).style('fill', color(d.name))
+      }
+    }
+
+    var unhighlight_line = function(d) {
+        if (d.selected == true) {
+        d3.selectAll('#' + d.name).style('stroke-width', '3px')
+                                  .style('stroke-opacity', '.5');
+        d3.selectAll('#rect' + d.name)
+          .style('x', 1100)
+          .transition().style('fill-opacity', .6)
+        d3.selectAll('#' + 'side_text' + d.name).style('fill', 'transparent')
+
+    }
+    }
+    // add transparent line, with thicker stoke width
+    // for easier highlighing
+  score.append("path")
+      .attr("class", "lineHover")
+      .attr("id", function(d) {return 'hover' +d.name})
+      .attr("d", function(d) { return line(d.values); })
+      .style("stroke-width", '20px')
+      .style('stroke', 'transparent')
+      .on("mouseover", highlight_line)
+      .on("mouseout", unhighlight_line)
+
+  score.append("text")
+      .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+      .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.score) + ")"; })
+      .attr("x", 20)
+      .attr('class', 'curtain')
+      .attr("dy", ".35em")
+      .attr('id', function(d) {return 'side_text' + d.name})
+      .text(function(d) { return d.name; })
+      .style('font-size', '30px')
+      .style('font-weight', 100)
+      .style('fill', 'transparent');
+
+
+  var legend = svg.append('g').attr('class', 'legend')
+  legend.selectAll('g').data(scores)
+        .enter()
+        .append('g')
+        .each(function(d, i) {
+          var score_id = d.name
+          g = d3.select(this)
+          g.append("circle")
+            .attr("class", "legend_circle")
+            .attr('id', 'LC' + d.name)
+            .attr("cx", 20 + i * 95)
+            .attr("cy", -80)
+            .attr("r", 16)
+            .style("fill", color(d.name))
+            .style("fill-opacity", ".6")
+            .on("mouseover", function(d) {
+              if (d.selected == true) {
+                d3.selectAll('#' + d.name).transition()
+                  .style('stroke-width', '8px')
+                  .style('stroke-opacity', '1')
+                }
+                d3.selectAll('#rect' + d.name)
+                .transition()
+                .style('x', 1150)
+                .style('fill-opacity', 1)
+              d3.select(this).transition(500).style('fill-opacity', '1');
+              d3.select('#desc' + d.name).transition().style('font-size', '13px');
+              d3.select('#legendtxt' + d.name).style('fill', color(d.name))
+                                              .style('font-size', '13px')
+              })
+            .on("mouseout", function(d) {
+              if (d.selected == false) {opac = '.2'}
+              else {
+                  opac = '.6'
+                  d3.selectAll('#' + d.name).transition().style('stroke-width', '3px')
+                                  .style('stroke-opacity', '.5');
+              }
+              d3.selectAll('#rect' + d.name)
+              .transition()
+              .style('x', 1100)
+              .transition().style('fill-opacity', .6)
+              d3.select(this).transition(200).style('fill-opacity', opac);
+              d3.selectAll('#desc' + d.name).transition().style('font-size', '0px');
+              d3.select('#legendtxt' + d.name).transition().style('fill', 'black')
+                                              .style('font-size', '11px')
+              })
+            // .on("click", function(d) {
+            //   if (d.selected == true) {
+            //     d3.selectAll('#desc' + d.name).style('font-size', '0px')
+            //     d3.selectAll('#' + d.name).transition().style("stroke-opacity", "0")
+            //     d3.select(this).style('fill-opacity', ".2").style("fill", 'grey')
+            //     d3.select('#' + 'legendtxt' + d.name).style('fill-opacity', ".2")
+            //     d3.select('#'+'hover'+d.name).style("stroke-width", "1px")
+            //     d.selected=false;
+            //   } else {
+            //     d3.selectAll('#desc' + d.name).transition().style('font-size', '12px')
+            //     d3.selectAll('#' + d.name)
+            //       .style('stroke-width', '0px')
+            //       .style('stroke-opacity', "1")
+            //       .transition().style("stroke-width", "16px")
+            //       .transition().style("stroke-width", "8px")
+
+            //       // .transition().style("stroke-width", "3px")
+            //       // .style('stroke-opacity', ".5")
+            //     d3.select(this).style('fill-opacity', ".6").style("fill", color(d.name))
+            //     d3.select('#' + 'legendtxt' + d.name).style('fill-opacity', '1')
+            //     d3.select('#'+'hover'+d.name).style("stroke-width", "20px")
+            //     d.selected=true
+            //   }
+            //   })
+          g.append("text")
+           .attr('x', 20 + i * 95)
+           .attr('y', -110)
+           .attr('id', 'legendtxt' + d.name)
+           .text(d.name).style('text-anchor', 'middle')
+                        .style('font-size', '11')
+                        .style('font-weight', '100')
+          g.append("text")
+           .attr('x', width/2).attr('y', -30)
+           .attr('id', function(d) {return 'desc' + d.name})
+           .text(score_descriptions[d.name])
+           .style("fill", color(d.name))
+           .style("font-size", 0)
+           .style("font-weight", '100')
+           .style("text-align", "center")
+           .style("text-anchor", "middle")
+        });
+
+    feature_values = []
+    d3.csv('user_summary.csv', function(error, data) {
+        if (error) throw error;
+          var profile = svg.append('g').attr('class', 'profile')
+          profile.selectAll('g').data(data)
+          .enter()
+          .append('g')
+          .each(function(d, i) {
+            var val = function() {
+              if (d.value < 0) {
+              return -(d.value * Math.abs(d.value * Math.pow(10, 31)))
+            } else {
+              return d.value * Math.abs(d.value * Math.pow(10, 31))
+            }
+          }
+            feature_values.push(val())
+          }).each(function(d, i) {
+            g = d3.select(this)
+            var start = -120  ;
+            g.append("rect")
+              .attr("id", 'rect' + d.feature)
+              .attr("width", 100)
+              .attr("height", 430*feature_values[i])
+              .attr('x', 1100)
+              .attr('y', function() {
+                if (i == 0) {return start}
+                else {return start+430*feature_values
+                  .slice(0, i).reduce((a, b) => a + b, 0)}
+              })
+              .style("fill", color(d.feature))
+              .style("fill-opacity", .6)
+              .on("mouseover", function() {
+                d3.select('#LC' + d.feature).style('fill-opacity', '1');
+                d3.select('#desc' + d.feature).style('font-size', '13px');
+              d3.select('#legendtxt' + d.feature).style('fill', color(d.feature))
+                                              .style('font-size', '13px')
+                d3.select(this).style('fill-opacity', 1)
+                d3.selectAll('#' + d.feature)
+                  .style('stroke-width', '8px')
+                  .style('stroke-opacity', '1');
+                d3.selectAll('#rect' + d.feature)
+                  .transition()
+                  .style('fill-opacity', 1)
+                d3.selectAll('#' + 'side_text' + d.feature).style('fill', color(d.feature))
+
+              })
+              .on("mouseout", function(){
+                d3.select('#LC' + d.feature).style('fill-opacity', .6);
+              d3.selectAll('#desc' + d.feature).style('font-size', '0px');
+              d3.select('#legendtxt' + d.feature).style('fill', 'black')
+                                              .style('font-size', '11px')
+                d3.select(this).style('fill-opacity', .6)
+                d3.selectAll('#' + d.feature).style('stroke-width', '3px')
+                                            .style('stroke-opacity', '.5');
+                  d3.selectAll('#rect' + d.feature)
+                    .transition().style('fill-opacity', .6)
+                  d3.selectAll('#' + 'side_text' + d.feature).style('fill', 'transparent')
+              })
+            });
+
+
+    });
+
+
+    g.append('text').attr('y', 500).attr('x', -30)
+     .style('font-size', 30).style('font-weight', 100)
+     .text('Of your most-listened tracks, here are the 5 most popular:')
+     // var color = d3.scale.category10();
+
+    // g.append('text').attr('y', -110).attr('x', 980)
+    //  .style('font-size', 30).style('font-weight', 100)
+    //  .text('Of your most-listened tracks,')
+
+    //  g.append('text').attr('y', -70).attr('x', 1110)
+    //  .style('font-size', 30).style('font-weight', 100)
+    //  .text('Here is your flavor')
+
+    //  g.append('text').attr('y', -30).attr('x', 1110)
+    //  .style('font-size', 30).style('font-weight', 100)
+    //  .text('profile')
+
+     g.append('text').attr('y', -80).attr('x', 1080)
+      .style('writing-mode', 'tb')
+     .style('font-size', 30).style('font-weight', 100)
+     .text(user + "'s Flavor Profile")
+
+
+
+
+     // var color = d3.scale.category10();
+    d3.csv('top5_clean2.csv', function(error, data) {
+        if (error) throw error;
+    console.log(data)
+    var color1 = d3.scale.category10();
+    color1.domain(global_cols)
+    var art = svg.append("g")
+    art.selectAll('image').data(data).enter().append('g')
+    .each(function(d, i) {
+    g.append('text')
+     .attr('id', 'text' + d.desc.split(' ').join(''))
+     .attr('x', -30).attr('y', 730)
+     .text(d.desc)
+     // .style('fill', color(d.max_feat))
+     .style('font-size', 0)
+     .style('font-weight', 100)
+     .style('font', "italic")
+   d3.selectAll('svg')
+     .append('image')
+     .attr('xlink:href', d.art)
+     .attr('class', 'pico')
+     .attr('height', 190)
+     .attr('width', 190)
+     .attr('y', 650)
+     .attr('x', 50 + i*200)
+     .attr('opacity', .2)
+     .on('mouseover', function() {
+     x = document.createElement("AUDIO");
+
+    if (x.canPlayType(d.prev)) {
+        x.setAttribute("src",d.prev);
+    } else {
+        x.setAttribute("src",d.prev);
+    }
+      x.play()
+          d3.select('#text' + d.desc.split(' ').join(''))
+            .transition().style('font-size', '30px')
+          d3.select(this).transition().style('opacity', 1)
+          d3.select('#' + d.max_feat)
+          .style('stroke-width', '8px')
+          .style('stroke-opacity', '1');
+          d3.select('#rect' + d.max_feat)
+          .style('x', 1150)
+          .transition()
+          .style('fill-opacity', 1)
+        d3.select('#' + 'side_text' + d.max_feat).style('fill', color1(d.max_feat))
+
+  })
+  .on('mouseout', function() {
+      x.pause()
+    d3.select('#text' + d.desc.split(' ').join(''))
+      .transition().style('font-size', 0)
+    d3.select(this).transition().style('opacity', .4)
+    d3.selectAll('#' + d.max_feat).style('stroke-width', '3px')
+                                  .style('stroke-opacity', '.5');
+        d3.selectAll('#rect' + d.max_feat)
+          .style('x', 1100)
+          .transition().style('fill-opacity', .6)
+        d3.selectAll('#' + 'side_text' + d.max_feat).style('fill', 'transparent')
+  });
+
+  var dataset = {
+  apples: [53245, 28479, 19697, 24037, 40245],
+};
+
+var width = 460,
+    height = 300,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.category20();
+
+var pie = d3.layout.pie()
+    .sort(null);
+
+var arc = d3.svg.arc()
+    .innerRadius(radius - 100)
+    .outerRadius(radius - 50);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var path = svg.selectAll("path")
+    .data(pie(dataset.apples))
+  .enter().append("path")
+    .attr("fill", function(d, i) { return color(i); })
+      })
+  })
+
+
+});
+  d3.select(self.frameElement).style("height", height + margin.top + margin.bottom + 100 + "px")
+                              .style("width", width + margin.left + margin.right + 400+ "px");
+
+d3.select("body").append('div')
+d3.select("body").append('hi')
+
+</script>
+</body>
