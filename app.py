@@ -107,10 +107,12 @@ def htmlForLoginButton():
     </a>
     </div>
     '''.format(auth_url)
+    print 'returning html'
     return htmlLoginButton
 
 def getSPOauthURI():
     auth_url = sp_oauth.get_authorize_url()
+    print 'auth_url: ' + auth_url
     return auth_url
 
 
@@ -119,6 +121,7 @@ def get_user_data():
     # TOKEN='BQAwLsyJbYWa_sSlULAizCNK3bt7gM8BzQRHS72v0_QVUT4QA5bVk2CUKwmnXRIR7FmuLMsyeMkC-4-MnwSIOyLpkbA4EGEI4M6Bfv-L83r5RbWOEgAwTSr9QAP04e-ZxOX8enFz5XK_Y41UCEPjyjNPjDmIaXzJ5vAd72JrqtJ7ALi1EooCXEyxkwbu3N7c8x-JBQv47K0FoSkaHOxVJvM_0BiqjyrVTaM3pD4KCDxSkIUA3xxDiBF43eHX5y_S8YufpEpyXsQFSvAzagTeWE4UK0tpXQ0nVKsUFPXmdagQG_sDYRhsQqk'
     # stores user's top songs over past year 
     # using Spotify's "Affinity" dataset for a user
+    print 'getting USER DATA'
     global TOKEN, username, _id
     print TOKEN, username
     song_ids = defaultdict(dict)
