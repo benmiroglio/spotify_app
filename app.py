@@ -11,8 +11,8 @@ import re
 app = Flask(__name__)
 
 PORT_NUMBER = 8000
-SPOTIPY_CLIENT_ID = '79c39d73e30e483faf9e49f36ee0d773'
-SPOTIPY_CLIENT_SECRET = '8c9568ea87fe41cf9e1bfd8900092e42'
+SPOTIPY_CLIENT_ID = ''
+SPOTIPY_CLIENT_SECRET = ''
 SPOTIPY_REDIRECT_URI = 'http://127.0.0.1:{}'.format(PORT_NUMBER)
 SCOPE = "playlist-read-collaborative user-library-read user-top-read"
 CACHE = '.spotipyoauthcache'
